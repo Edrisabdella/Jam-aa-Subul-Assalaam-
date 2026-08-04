@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jam'aa Subul-Assalaam Dargaggoota Waaccuu</title>
+    <!-- Font Awesome & Google Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & ROOT ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #0a5c2f;
+            --primary-light: #1a7a44;
+            --primary-dark: #063d1f;
+            --gold: #d4a843;
+            --gold-light: #e8c96e;
+            --bg: #f4f7f6;
+            --card: #ffffff;
+            --text: #1e2a2f;
+            --text-light: #4a5a5f;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+            --sidebar-width: 280px;
+            --header-height: 70px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            outline: none;
+            border: none;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--primary-dark);
+            color: #fff;
+            padding: 20px 16px;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform var(--transition);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 18px;
+        }
+        .sidebar-brand i {
+            font-size: 28px;
+            color: var(--gold);
+        }
+        .sidebar-brand h2 {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .sidebar-brand h2 small {
+            display: block;
+            font-weight: 400;
+            font-size: 11px;
+            color: var(--gold-light);
+            opacity: 0.8;
+        }
+        .sidebar-nav {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .sidebar-nav .nav-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 12px 12px 4px;
+            font-weight: 600;
+        }
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            position: relative;
+        }
+        .sidebar-nav a i {
+            width: 22px;
+            font-size: 16px;
+            text-align: center;
+        }
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .sidebar-nav a.active {
+            background: var(--gold);
+            color: var(--primary-dark);
+        }
+        .sidebar-nav a .badge {
+            margin-left: auto;
+            background: var(--gold);
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+        .sidebar-footer {
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            height: var(--header-height);
+            background: var(--card);
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header-left .menu-toggle {
+            display: none;
+            font-size: 22px;
+            color: var(--text);
+        }
+        .header-left h4 {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-right .date-badge {
+            font-size: 13px;
+            color: var(--text-light);
+            background: var(--bg);
+            padding: 6px 14px;
+            border-radius: 30px;
+        }
+        .header-right .admin-badge {
+            background: var(--gold);
+            color: var(--primary-dark);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .content {
+            padding: 28px 32px;
+            flex: 1;
+        }
+
+        /* ===== PAGE SECTIONS ===== */
+        .page {
+            display: none;
+            animation: fadeUp 0.4s ease;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== CARDS & GRID ===== */
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px 28px;
+            margin-bottom: 24px;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .card-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .card-header h3 i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .stat-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+        .stat-card .num {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        .stat-card .label {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+        .stat-card.gold {
+            border-left-color: var(--gold);
+        }
+        .stat-card.gold .num {
+            color: var(--gold);
+        }
+
+        /* ===== HERO / HOME ===== */
+        .hero {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+            padding: 48px 56px;
+            margin-bottom: 28px;
+            background: linear-gradient(135deg, rgba(6, 61, 31, 0.85), rgba(10, 92, 47, 0.75));
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1.2s ease-in-out;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 700px;
+        }
+        .hero-content h1 {
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        .hero-content h1 span {
+            color: var(--gold-light);
+        }
+        .hero-content p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+        .hero-content .motto {
+            font-style: italic;
+            font-size: 15px;
+            border-left: 3px solid var(--gold);
+            padding-left: 16px;
+            margin-top: 12px;
+            opacity: 0.95;
+        }
+        .hero .bg-credit {
+            position: absolute;
+            bottom: 12px;
+            right: 20px;
+            z-index: 3;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 10px;
+        }
+
+        .vision-mission {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 8px;
+        }
+        .vision-mission .vm-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--gold);
+        }
+        .vm-card h4 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .vm-card h4 i {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+        .vm-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .vm-card ul li {
+            padding: 5px 0;
+            font-size: 14px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .vm-card ul li::before {
+            content: '•';
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* ===== FORMS ===== */
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 11px 16px;
+            border-radius: 10px;
+            border: 1.5px solid #e2e8f0;
+            background: #fafbfc;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(10, 92, 47, 0.08);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: var(--transition);
+            background: var(--primary);
+            color: #fff;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(10, 92, 47, 0.25);
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: var(--primary-dark);
+        }
+        .btn-gold:hover {
+            background: var(--gold-light);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .btn-sm {
+            padding: 6px 16px;
+            font-size: 12px;
+        }
+
+        /* ===== TABLES ===== */
+        .table-wrap {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        table th {
+            text-align: left;
+            padding: 12px 12px 12px 0;
+            font-weight: 600;
+            color: var(--text-light);
+            border-bottom: 2px solid #eef2f0;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        table td {
+            padding: 12px 12px 12px 0;
+            border-bottom: 1px solid #f0f3f2;
+            vertical-align: middle;
+        }
+        table tr:last-child td {
+            border-bottom: none;
+        }
+        .status-badge {
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #b45309;
+        }
+        .status-badge.approved {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status-badge.rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ===== COMMITTEE LIST ===== */
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .committee-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--gold);
+            transition: var(--transition);
+        }
+        .committee-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+        }
+        .committee-card h5 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+        .committee-card .leader {
+            font-size: 14px;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+        }
+        .committee-card .leader i {
+            width: 18px;
+            color: var(--gold);
+        }
+        .committee-card .contact-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .committee-card .contact-links a {
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 30px;
+            background: var(--bg);
+            color: var(--text);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+        .committee-card .contact-links a:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ===== ROOM / UPLOAD ===== */
+        .room-area {
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: var(--card);
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+        .file-item .file-name {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .file-item .file-meta {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* ===== DONATION ===== */
+        .donation-progress {
+            background: var(--bg);
+            border-radius: 30px;
+            height: 12px;
+            overflow: hidden;
+            margin: 12px 0 8px;
+        }
+        .donation-progress .fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            border-radius: 30px;
+            transition: width 0.8s ease;
+        }
+
+        /* ===== ACCOUNTS ===== */
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+        }
+        .account-item {
+            background: var(--bg);
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid #e8edec;
+        }
+        .account-item .bank {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--primary-dark);
+        }
+        .account-item .number {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 2px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main {
+                margin-left: 0;
+            }
+            .header-left .menu-toggle {
+                display: block;
+            }
+            .header {
+                padding: 0 16px;
+            }
+            .content {
+                padding: 16px;
+            }
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .vision-mission {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                padding: 28px 24px;
+                min-height: 280px;
+            }
+            .hero-content h1 {
+                font-size: 26px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .header-right .date-badge {
+                display: none;
+            }
+        }
+
+        /* ===== OVERLAY ===== */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            display: none;
+        }
+        .sidebar-overlay.show {
+            display: block;
+        }
+
+        /* ===== MISC ===== */
+        .text-center {
+            text-align: center;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-20 {
+            margin-top: 20px;
+        }
+        .mb-12 {
+            margin-bottom: 12px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .gap-12 {
+            gap: 12px;
+        }
+        .gap-16 {
+            gap: 16px;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .text-muted {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+        .text-sm {
+            font-size: 13px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            background: var(--bg);
+            color: var(--text-light);
+        }
+        .tag.primary {
+            background: var(--primary);
+            color: #fff;
+        }
+        .tag.gold {
+            background: var(--gold);
+            color: var(--primary-dark);
+        }
+
+        /* voice recording */
+        .recording-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #dc3545;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .recording-indicator .pulse {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #dc3545;
+            animation: pulse 1.2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.6);
+                opacity: 0.4;
+            }
+        }
+
+        /* ===== PRINT HIDE ===== */
+        @media print {
+            .sidebar,
+            .header {
+                display: none !important;
+            }
+            .main {
+                margin-left: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== SIDEBAR OVERLAY ===== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <i class="fas fa-mosque"></i>
+            <h2>Subul-Assalaam <small>Dargaggoota Waaccuu</small></h2>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-label">Main</div>
+            <a href="#" class="active" data-page="home"><i class="fas fa-home"></i> Home</a>
+            <a href="#" data-page="members"><i class="fas fa-users"></i> Members <span class="badge" id="memberBadge">0</span></a>
+            <a href="#" data-page="donations"><i class="fas fa-hand-holding-heart"></i> Donations</a>
+            <a href="#" data-page="finance"><i class="fas fa-coins"></i> Finance</a>
+
+            <div class="nav-label">Committees</div>
+            <a href="#" data-page="committees"><i class="fas fa-sitemap"></i> All Committees</a>
+            <a href="#" data-page="committee-room"><i class="fas fa-door-open"></i> Committee Rooms</a>
+
+            <div class="nav-label">Learning</div>
+            <a href="#" data-page="quran-room"><i class="fas fa-quran"></i> Quran Teaching</a>
+            <a href="#" data-page="training"><i class="fas fa-graduation-cap"></i> Training Materials</a>
+            <a href="#" data-page="meeting"><i class="fas fa-video"></i> Meeting Room</a>
+
+            <div class="nav-label">Admin</div>
+            <a href="#" data-page="admin"><i class="fas fa-lock"></i> Admin Panel</a>
+            <a href="#" data-page="settings"><i class="fas fa-cog"></i> Settings</a>
+        </nav>
+        <div class="sidebar-footer">
+            <i class="fas fa-code-branch"></i> v2.0 &bull; 2026 G.c
+        </div>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <div class="main">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+                <h4 id="pageTitle">Home</h4>
+            </div>
+            <div class="header-right">
+                <span class="date-badge" id="dateBadge"></span>
+                <span class="admin-badge"><i class="fas fa-user-shield"></i> Admin</span>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!-- ===== PAGE: HOME ===== -->
+            <section class="page active" id="page-home">
+                <!-- Hero -->
+                <div class="hero" id="heroBanner">
+                    <div class="hero-content">
+                        <h1>Jam'aa <span>Subul-Assalaam</span> <br />Dargaggoota Waaccuu</h1>
+                        <p><strong>Maqaa Jam'aa:</strong> Jam'aa Subul-Assalaam Dargaggoota Waaccuu</p>
+                        <p><strong>Teessoo:</strong> Ciiroo, Zoonii Waaccuu &bull; <strong>Godina:</strong> Harargee Lixaa &bull; <strong>Naannoo:</strong> Oromiya</p>
+                        <div class="motto">"Ikhlaasaan Tajaajiluu, Beekumsaan Guddachuu, Tokkummaan Milkaa'uu, Hawaasa isaa cinaa waan danda'uu hundaan dhaabachuu"</div>
+                    </div>
+                    <div class="bg-credit">📸 Background &bull; Subul-Assalaam</div>
+                </div>
+
+                <!-- Vision & Mission -->
+                <div class="vision-mission">
+                    <div class="vm-card">
+                        <h4><i class="fas fa-eye"></i> Mul'ata (Vision)</h4>
+                        <p style="color:var(--text-light);font-size:14px;line-height:1.7;">Yoo Rabbiin jedhe, mana barumsaa amantii fi saayinsii sadarkaa olaanaa qabu hundeessuun dhaloota beekumsaan, naamusaan fi sodaa Rabbiitiin cime horachuu.</p>
+                    </div>
+                    <div class="vm-card">
+                        <h4><i class="fas fa-bullseye"></i> Ergama (Mission)</h4>
+                        <ul>
+                            <li>Qur'aanaa fi Sunnah barsiisa</li>
+                            <li>Da'awaa qulqulluu babal'isa</li>
+                            <li>Tokkummaa Muslimootaa cimsuuf hojjeta</li>
+                            <li>Hojii kheeyrii fi tajaajila hawaasaa ni babal'isa</li>
+                            <li>Dargaggoota hoggansa gaarii qaban ni guddisa</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Core Values -->
+                <div class="card mt-20">
+                    <div class="card-header"><h3><i class="fas fa-star"></i> Duudhaa (Core Values)</h3></div>
+                    <div style="display:flex;flex-wrap:wrap;gap:12px;">
+                        <span class="tag gold">Ikhlaasa</span>
+                        <span class="tag primary">Amanamummaa</span>
+                        <span class="tag gold">Haqaqabeessummaa</span>
+                        <span class="tag primary">Marii (Shuuraa)</span>
+                        <span class="tag gold">Tokkummaa</span>
+                        <span class="tag primary">Wal kabajuu</span>
+                        <span class="tag gold">Itti gaafatamummaa</span>
+                        <span class="tag primary">Hojii qulqullina qabu</span>
+                    </div>
+                </div>
+
+                <!-- Accounts -->
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-university"></i> Odeeffannoo Dhaabbataa</h3></div>
+                    <div class="account-grid">
+                        <div class="account-item"><div class="bank">CBE</div><div class="number">1000631440014</div></div>
+                        <div class="account-item"><div class="bank">CBO</div><div class="number">1003700549944</div></div>
+                        <div class="account-item"><div class="bank">Awash Bank</div><div class="number">014251470950000</div></div>
+                        <div class="account-item"><div class="bank">Rammis Bank</div><div class="number">1010000332401</div></div>
+                    </div>
+                    <div style="margin-top:12px;font-size:13px;color:var(--text-light);">
+                        <i class="fas fa-envelope"></i> jamaasubulassalaam@gmail.com
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: MEMBERS ===== -->
+            <section class="page" id="page-members">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-user-plus"></i> Add Member</h3>
+                        <span class="text-muted">Total: <strong id="memberTotal">0</strong></span>
+                    </div>
+                    <form id="memberForm">
+                        <div class="form-row">
+                            <div class="form-group"><label>Full Name</label><input type="text" id="memName" placeholder="e.g. Ahmed Ali" required /></div>
+                            <div class="form-group"><label>Email</label><input type="email" id="memEmail" placeholder="ahmed@example.com" required /></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Phone</label><input type="text" id="memPhone" placeholder="+2519..." required /></div>
+                            <div class="form-group"><label>Committee</label>
+                                <select id="memCommittee">
+                                    <option value="Koree Bulchinsaa">Koree Bulchinsaa</option>
+                                    <option value="Koree Hawaasummaa">Koree Hawaasummaa</option>
+                                    <option value="Koree Maallaqaa">Koree Maallaqaa</option>
+                                    <option value="Koree toohannoo fi Hordoffii">Koree toohannoo fi Hordoffii</option>
+                                    <option value="Koree Qiraatii">Koree Qiraatii</option>
+                                    <option value="Koree Da'awaa fi Irshad">Koree Da'awaa fi Irshad</option>
+                                    <option value="Koree Qindeeysituu Araddootaa">Koree Qindeeysituu Araddootaa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>Role</label>
+                            <select id="memRole">
+                                <option value="Member">Member</option>
+                                <option value="Amiira">Amiira</option>
+                                <option value="Itti Aana Amiiraa">Itti Aana Amiiraa</option>
+                                <option value="Barreessaa">Barreessaa</option>
+                                <option value="Oditor">Oditor</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn"><i class="fas fa-plus"></i> Add Member</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-list"></i> All Members</h3></div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Committee</th><th>Role</th><th>Status</th><th>Action</th></tr></thead>
+                            <tbody id="memberTableBody"></tbody>
+                        </table>
+                    </div>
+                    <div id="noMembers" class="text-center text-muted" style="padding:30px 0;">No members registered yet.</div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: DONATIONS ===== -->
+            <section class="page" id="page-donations">
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-hand-holding-heart"></i> Make a Donation</h3></div>
+                    <form id="donationForm">
+                        <div class="form-row">
+                            <div class="form-group"><label>Full Name</label><input type="text" id="donName" placeholder="Your name" required /></div>
+                            <div class="form-group"><label>Amount (ETB)</label><input type="number" id="donAmount" placeholder="1000" required min="1" /></div>
+                        </div>
+                        <div class="form-group"><label>Message (optional)</label><textarea id="donMessage" rows="2" placeholder="May Allah bless you..."></textarea></div>
+                        <button type="submit" class="btn btn-gold"><i class="fas fa-donate"></i> Donate Now</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-chart-line"></i> Donation Progress</h3></div>
+                    <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;">
+                        <span>Total Raised: <span id="donTotal">0</span> ETB</span>
+                        <span>Goal: 500,000 ETB</span>
+                    </div>
+                    <div class="donation-progress"><div class="fill" id="donProgress" style="width:0%;"></div></div>
+                    <div class="text-muted text-sm" id="donPercentage">0%</div>
+                    <div class="mt-12"><button class="btn btn-sm btn-outline" onclick="resetDonations()"><i class="fas fa-trash"></i> Reset</button></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-history"></i> Donation History</h3></div>
+                    <div class="table-wrap">
+                        <table><thead><tr><th>Name</th><th>Amount</th><th>Message</th><th>Date</th></tr></thead><tbody id="donTableBody"></tbody></table>
+                    </div>
+                    <div id="noDonations" class="text-center text-muted" style="padding:20px 0;">No donations yet.</div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: FINANCE ===== -->
+            <section class="page" id="page-finance">
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-coins"></i> Jama'aa Accounts</h3></div>
+                    <div class="account-grid">
+                        <div class="account-item"><div class="bank">CBE</div><div class="number">1000631440014</div></div>
+                        <div class="account-item"><div class="bank">CBO</div><div class="number">1003700549944</div></div>
+                        <div class="account-item"><div class="bank">Awash Bank</div><div class="number">014251470950000</div></div>
+                        <div class="account-item"><div class="bank">Rammis Bank</div><div class="number">1010000332401</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-receipt"></i> Upload Membership Fee Receipt</h3></div>
+                    <form id="receiptForm">
+                        <div class="form-row">
+                            <div class="form-group"><label>Member Name</label><input type="text" id="receiptName" placeholder="Full name" required /></div>
+                            <div class="form-group"><label>Amount Paid</label><input type="number" id="receiptAmount" placeholder="500" required min="1" /></div>
+                        </div>
+                        <div class="form-group"><label>Receipt Image / Screenshot</label><input type="file" id="receiptFile" accept="image/*" required /></div>
+                        <button type="submit" class="btn"><i class="fas fa-upload"></i> Upload Receipt</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-list"></i> Receipt Submissions</h3></div>
+                    <div class="table-wrap">
+                        <table><thead><tr><th>Member</th><th>Amount</th><th>Receipt</th><th>Date</th></tr></thead><tbody id="receiptTableBody"></tbody></table>
+                    </div>
+                    <div id="noReceipts" class="text-center text-muted" style="padding:20px 0;">No receipts uploaded.</div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: COMMITTEES ===== -->
+            <section class="page" id="page-committees">
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-sitemap"></i> All Seven Committees</h3></div>
+                    <div class="committee-grid" id="committeeGrid"></div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: COMMITTEE ROOM ===== -->
+            <section class="page" id="page-committee-room">
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-door-open"></i> Committee Room</h3></div>
+                    <div class="form-group"><label>Select Committee</label>
+                        <select id="roomCommitteeSelect">
+                            <option value="Koree Bulchinsaa">Koree Bulchinsaa Jama'aa</option>
+                            <option value="Koree Hawaasummaa">Koree Hawaasummaa</option>
+                            <option value="Koree Maallaqaa">Koree Maallaqaa</option>
+                            <option value="Koree toohannoo fi Hordoffii">Koree toohannoo fi Hordoffii</option>
+                            <option value="Koree Qiraatii">Koree Qiraatii</option>
+                            <option value="Koree Da'awaa fi Irshad">Koree Da'awaa fi Irshad</option>
+                            <option value="Koree Qindeeysituu Araddootaa">Koree Qindeeysituu Araddootaa</option>
+                        </select>
+                    </div>
+                    <div class="room-area" id="roomArea">
+                        <div class="flex-between"><span><strong id="roomTitle">Koree Bulchinsaa</strong></span><span class="text-muted text-sm">Upload files, share resources</span></div>
+                        <form id="roomUploadForm" style="margin-top:12px;">
+                            <div class="form-row">
+                                <div class="form-group"><label>File Title</label><input type="text" id="roomFileTitle" placeholder="e.g. Monthly Report" required /></div>
+                                <div class="form-group"><label>Upload File</label><input type="file" id="roomFileInput" required /></div>
+                            </div>
+                            <button type="submit" class="btn btn-sm"><i class="fas fa-upload"></i> Upload</button>
+                        </form>
+                        <div id="roomFileList" class="file-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: QURAN TEACHING ===== -->
+            <section class="page" id="page-quran-room">
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-quran"></i> Quran Teaching Room</h3></div>
+                    <p class="text-muted">Ustaaz can record voice, upload videos, and share recitation materials.</p>
+                    <div class="room-area">
+                        <div class="flex-between"><span><strong>Voice Recording</strong></span>
+                            <button id="recordBtn" class="btn btn-sm btn-gold"><i class="fas fa-microphone"></i> Start Recording</button>
+                        </div>
+                        <div id="recordingStatus" class="text-muted text-sm" style="margin:8px 0;">Click record to begin.</div>
+                        <div id="recordedAudio" style="margin:8px 0;"></div>
+                        <form id="quranUploadForm" style="margin-top:12px;">
+                            <div class="form-row">
+                                <div class="form-group"><label>Title / Surah</label><input type="text" id="quranTitle" placeholder="e.g. Surah Al-Fatiha" required /></div>
+                                <div class="form-group"><label>Upload Video / Audio</label><input type="file" id="quranFile" accept="video/*,audio/*" required /></div>
+                            </div>
+                            <button type="submit" class="btn btn-sm"><i class="fas fa-upload"></i> Upload Teaching Material</button>
+                        </form>
+                        <div id="quranFileList" class="file-list"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-users"></i> Students &amp; Levels</h3></div>
+                    <form id="studentForm" style="display:flex;gap:12px;flex-wrap:wrap;align-items:end;">
+                        <div class="form-group" style="flex:1;min-width:160px;"><label>Student Name</label><input type="text" id="studentName" placeholder="Name" required /></div>
+                        <div class="form-group" style="flex:1;min-width:160px;"><label>Reading Level</label>
+                            <select id="studentLevel"><option value="Beginner">Beginner</option><option value="Intermediate">Intermediate</option><option value="Advanced">Advanced</option><option value="Master">Master</option></select>
+                        </div>
+                        <button type="submit" class="btn btn-sm"><i class="fas fa-plus"></i> Add Student</button>
+                    </form>
+                    <div class="table-wrap mt-12">
+                        <table><thead><tr><th>Name</th><th>Level</th><th>Date</th></tr></thead><tbody id="studentTableBody"></tbody></table>
+                    </div>
+                    <div id="noStudents" class="text-center text-muted" style="padding:16px 0;">No students registered.</div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: TRAINING ===== -->
+            <section class="page" id="page-training">
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-graduation-cap"></i> Training Materials</h3></div>
+                    <form id="trainingForm">
+                        <div class="form-row">
+                            <div class="form-group"><label>Title</label><input type="text" id="trainingTitle" placeholder="Training title" required /></div>
+                            <div class="form-group"><label>Category</label>
+                                <select id="trainingCategory"><option value="Quran">Quran</option><option value="Hadiis">Hadiis</option><option value="Kitaab">Kitaab</option><option value="General">General</option></select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label>Description</label><textarea id="trainingDesc" rows="2" placeholder="Brief description..."></textarea></div>
+                        <div class="form-group"><label>Upload File (PDF, Video, Audio)</label><input type="file" id="trainingFile" required /></div>
+                        <button type="submit" class="btn"><i class="fas fa-upload"></i> Upload Training</button>
+                    </form>
+                    <div id="trainingList" class="file-list mt-12"></div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: MEETING ===== -->
+            <section class="page" id="page-meeting">
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-video"></i> Meeting Room</h3></div>
+                    <p class="text-muted">Add Google Meet links for online meetings.</p>
+                    <form id="meetingForm">
+                        <div class="form-row">
+                            <div class="form-group"><label>Meeting Title</label><input type="text" id="meetingTitle" placeholder="e.g. Weekly Shura" required /></div>
+                            <div class="form-group"><label>Google Meet Link</label><input type="url" id="meetingLink" placeholder="https://meet.google.com/xxx" required /></div>
+                        </div>
+                        <div class="form-group"><label>Date &amp; Time</label><input type="datetime-local" id="meetingDateTime" required /></div>
+                        <button type="submit" class="btn btn-gold"><i class="fas fa-plus"></i> Add Meeting</button>
+                    </form>
+                    <div id="meetingList" class="mt-12"></div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: ADMIN ===== -->
+            <section class="page" id="page-admin">
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-lock"></i> Admin Approval</h3></div>
+                    <p class="text-muted">Enter the Amir's password to approve pending members. Password: <strong>Jamaadmin</strong></p>
+                    <div class="form-row" style="align-items:end;">
+                        <div class="form-group"><label>Admin Password</label><input type="password" id="adminPassword" placeholder="Enter password" /></div>
+                        <button class="btn" id="adminLoginBtn"><i class="fas fa-unlock"></i> Unlock</button>
+                    </div>
+                    <div id="adminStatus" class="text-muted text-sm mt-12"></div>
+                </div>
+                <div class="card" id="adminPanel" style="display:none;">
+                    <div class="card-header"><h3><i class="fas fa-users-cog"></i> Pending Approvals</h3></div>
+                    <div class="table-wrap">
+                        <table><thead><tr><th>Name</th><th>Email</th><th>Committee</th><th>Action</th></tr></thead><tbody id="pendingTableBody"></tbody></table>
+                    </div>
+                    <div id="noPending" class="text-center text-muted" style="padding:20px 0;">No pending members.</div>
+                </div>
+            </section>
+
+            <!-- ===== PAGE: SETTINGS ===== -->
+            <section class="page" id="page-settings">
+                <div class="card">
+                    <div class="card-header"><h3><i class="fas fa-cog"></i> Settings</h3></div>
+                    <p class="text-muted">Manage platform data. All data is stored locally in your browser.</p>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;">
+                        <button class="btn btn-danger btn-sm" onclick="localStorage.clear();location.reload();"><i class="fas fa-trash"></i> Clear All Data</button>
+                        <button class="btn btn-sm btn-outline" onclick="exportData()"><i class="fas fa-download"></i> Export Data (JSON)</button>
+                        <button class="btn btn-sm btn-outline" onclick="document.getElementById('importFileInput').click()"><i class="fas fa-upload"></i> Import Data</button>
+                        <input type="file" id="importFileInput" accept=".json" style="display:none;" onchange="importData(event)" />
+                    </div>
+                    <div class="mt-20 text-muted text-sm">
+                        <i class="fas fa-info-circle"></i> Data includes members, donations, receipts, students, training, meetings, and committee files.
+                    </div>
+                </div>
+            </section>
+
+        </div><!-- /content -->
+    </div><!-- /main -->
+
+    <script>
+        // ============================================================
+        //  DATA LAYER (localStorage)
+        // ============================================================
+        const DB = {
+            get(key, def) { try { const d = localStorage.getItem('jamaa_' + key); return d ? JSON.parse(d) : def; } catch (
+                e) { return def; } },
+            set(key, val) { localStorage.setItem('jamaa_' + key, JSON.stringify(val)); }
+        };
+
+        // Default data
+        let members = DB.get('members', []);
+        let donations = DB.get('donations', []);
+        let receipts = DB.get('receipts', []);
+        let committeeFiles = DB.get('committeeFiles', {});
+        let quranFiles = DB.get('quranFiles', []);
+        let students = DB.get('students', []);
+        let trainingFiles = DB.get('trainingFiles', []);
+        let meetings = DB.get('meetings', []);
+        let pendingMembers = DB.get('pendingMembers', []);
+
+        // Committee leaders data
+        const committeeLeaders = {
+            'Koree Bulchinsaa': {
+                leaders: [
+                    { role: 'Amiira jama\'a', name: 'Engineer Jemal Nuure', email: 'jemal.nur58@gmail.com',
+                        phone: '+251923933665' },
+                    { role: 'Itti Aana Amiiraa', name: 'Ustaaz Abdulaziz Sileshi',
+                        email: 'abdulazizdamiina@gmail.com', phone: '+251921446503' },
+                    { role: 'Barreessaa', name: 'Hundee Yuusuf', email: '', phone: '' }
+                ]
+            },
+            'Koree Hawaasummaa': {
+                leaders: [
+                    { role: 'Amiira', name: 'Dr Lammi', email: '', phone: '+251993756563' },
+                    { role: 'Itti Aana Amiiraa', name: 'Roba Abrahim', email: '', phone: '' }
+                ]
+            },
+            'Koree Maallaqaa': {
+                leaders: [
+                    { role: 'Amiira', name: 'Hiriirsaa Jamaal', email: 'hiriyookoo7@gmail.com',
+                    phone: '+251927853707' },
+                    { role: 'Itti Aana Amiira', name: 'Shafi Abdella', email: '', phone: '+251922007579' },
+                    { role: 'Barressa', name: 'Abdeta Tofik', email: 'abdetatofik2024@gmail.com',
+                        phone: '+251924207279' },
+                    { role: 'Oditor', name: 'Ibrahim Abdulahi fi Yasin Abdella', email: '', phone: '' }
+                ]
+            },
+            'Koree toohannoo fi Hordoffii': {
+                leaders: [
+                    { role: 'Amiira', name: 'Shamshu Aliyi', email: '', phone: '' },
+                    { role: 'Itti Aana Amiira', name: 'Arif Yeshixila', email: '', phone: '' },
+                    { role: 'Barreessa', name: 'Adinan Hashim', email: '', phone: '' }
+                ]
+            },
+            'Koree Qiraatii': {
+                leaders: [
+                    { role: 'Amiira', name: 'Roba Muhe', email: '', phone: '' },
+                    { role: 'Itti Aana Amiira', name: 'Abdusemed Usmail', email: '', phone: '' }
+                ]
+            },
+            'Koree Da\'awaa fi Irshad': {
+                leaders: [
+                    { role: 'Amiira', name: 'Jafar Usmail', email: '', phone: '' },
+                    { role: 'Itti Aana Amiira', name: 'Ammaar', email: '', phone: '' }
+                ]
+            },
+            'Koree Qindeeysituu Araddootaa': {
+                leaders: [
+                    { role: 'Amiira', name: 'Abdurezak Aliyi', email: 'aliyiabdurezak66@gmail.com',
+                        phone: '+251914307266' },
+                    { role: 'Itti Aana Amiira', name: 'Falmata Yusuf', email: '', phone: '' },
+                    { role: 'Bareessa', name: 'Abdi Ibrahim', email: '', phone: '' }
+                ]
+            }
+        };
+
+        // ============================================================
+        //  HELPERS
+        // ============================================================
+        function saveAll() {
+            DB.set('members', members);
+            DB.set('donations', donations);
+            DB.set('receipts', receipts);
+            DB.set('committeeFiles', committeeFiles);
+            DB.set('quranFiles', quranFiles);
+            DB.set('students', students);
+            DB.set('trainingFiles', trainingFiles);
+            DB.set('meetings', meetings);
+            DB.set('pendingMembers', pendingMembers);
+        }
+
+        function genId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 4); }
+
+        function formatDate(d) {
+            const dt = new Date(d);
+            return dt.toLocaleDateString('en-ET', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        function formatDateTime(d) {
+            const dt = new Date(d);
+            return dt.toLocaleString('en-ET', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit',
+                minute: '2-digit' });
+        }
+
+        // ============================================================
+        //  NAVIGATION
+        // ============================================================
+        const pageMap = {
+            home: 'Home',
+            members: 'Members',
+            donations: 'Donations',
+            finance: 'Finance',
+            committees: 'Committees',
+            'committee-room': 'Committee Room',
+            'quran-room': 'Quran Teaching',
+            training: 'Training',
+            meeting: 'Meeting Room',
+            admin: 'Admin Panel',
+            settings: 'Settings'
+        };
+
+        document.querySelectorAll('.sidebar-nav a[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.dataset.page;
+                // update active
+                document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+                // show page
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.getElementById('page-' + page).classList.add('active');
+                document.getElementById('pageTitle').textContent = pageMap[page] || page;
+                // close sidebar on mobile
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('show');
+                // refresh dynamic content
+                if (page === 'members') renderMembers();
+                if (page === 'donations') renderDonations();
+                if (page === 'finance') renderReceipts();
+                if (page === 'committees') renderCommittees();
+                if (page === 'committee-room') renderRoomFiles();
+                if (page === 'quran-room') { renderQuranFiles();
+                    renderStudents(); }
+                if (page === 'training') renderTraining();
+                if (page === 'meeting') renderMeetings();
+                if (page === 'admin') renderPending();
+                updateBadge();
+            });
+        });
+
+        // mobile toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('show');
+        });
+        document.getElementById('sidebarOverlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('open');
+            this.classList.remove('show');
+        });
+
+        // date badge
+        document.getElementById('dateBadge').textContent = new Date().toLocaleDateString('en-ET', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+        });
+
+        // ============================================================
+        //  HERO BACKGROUND ROTATION
+        // ============================================================
+        const heroImages = [
+            'https://i.ibb.co/PsGDsNnn/jamaa-subul-salam.jpg',
+            'https://i.ibb.co/sdLCfp96/Quran.png',
+            'https://i.ibb.co/XZfbwv74/account-jama-a.jpg'
+        ];
+        let heroIndex = 0;
+
+        function rotateHero() {
+            const hero = document.getElementById('heroBanner');
+            hero.style.backgroundImage = `linear-gradient(135deg, rgba(6,61,31,0.85), rgba(10,92,47,0.75)), url(${heroImages[heroIndex]})`;
+            heroIndex = (heroIndex + 1) % heroImages.length;
+        }
+        rotateHero();
+        setInterval(rotateHero, 5000);
+
+        // ============================================================
+        //  MEMBERS
+        // ============================================================
+        document.getElementById('memberForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('memName').value.trim();
+            const email = document.getElementById('memEmail').value.trim();
+            const phone = document.getElementById('memPhone').value.trim();
+            const committee = document.getElementById('memCommittee').value;
+            const role = document.getElementById('memRole').value;
+
+            if (!name || !email || !phone) return alert('Please fill all fields.');
+
+            const newMember = {
+                id: genId(),
+                name,
+                email,
+                phone,
+                committee,
+                role,
+                status: 'pending',
+                registeredAt: new Date().toISOString()
+            };
+
+            pendingMembers.push(newMember);
+            saveAll();
+            renderMembers();
+            this.reset();
+            updateBadge();
+            alert('Member registered! Waiting for Amir approval (password: Jamaadmin)');
+        });
+
+        function renderMembers() {
+            const all = [...members, ...pendingMembers];
+            const tbody = document.getElementById('memberTableBody');
+            const total = document.getElementById('memberTotal');
+            const no = document.getElementById('noMembers');
+
+            total.textContent = all.length;
+
+            if (all.length === 0) {
+                tbody.innerHTML = '';
+                no.style.display = 'block';
+                return;
+            }
+            no.style.display = 'none';
+
+            tbody.innerHTML = all.map(m => `
+                    <tr>
+                        <td><strong>${m.name}</strong></td>
+                        <td>${m.email}</td>
+                        <td>${m.phone}</td>
+                        <td>${m.committee}</td>
+                        <td>${m.role}</td>
+                        <td><span class="status-badge ${m.status === 'approved' ? 'approved' : m.status === 'rejected' ? 'rejected' : 'pending'}">${m.status}</span></td>
+                        <td>
+                            ${m.status === 'pending' ? `<button class="btn btn-sm btn-danger" onclick="removePending('${m.id}')"><i class="fas fa-times"></i></button>` : ''}
+                            ${m.status === 'approved' ? `<button class="btn btn-sm btn-danger" onclick="removeMember('${m.id}')"><i class="fas fa-trash"></i></button>` : ''}
+                        </td>
+                    </tr>
+                `).join('');
+        }
+
+        function removePending(id) {
+            if (!confirm('Remove this pending registration?')) return;
+            pendingMembers = pendingMembers.filter(m => m.id !== id);
+            saveAll();
+            renderMembers();
+            updateBadge();
+        }
+
+        function removeMember(id) {
+            if (!confirm('Remove this member?')) return;
+            members = members.filter(m => m.id !== id);
+            saveAll();
+            renderMembers();
+            updateBadge();
+        }
+
+        function updateBadge() {
+            const count = pendingMembers.length + members.length;
+            document.getElementById('memberBadge').textContent = count;
+        }
+
+        // ============================================================
+        //  DONATIONS
+        // ============================================================
+        document.getElementById('donationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('donName').value.trim();
+            const amount = parseInt(document.getElementById('donAmount').value);
+            const message = document.getElementById('donMessage').value.trim();
+
+            if (!name || !amount || amount < 1) return alert('Please enter valid name and amount.');
+
+            donations.push({ id: genId(), name, amount, message, date: new Date().toISOString() });
+            saveAll();
+            renderDonations();
+            this.reset();
+        });
+
+        function renderDonations() {
+            const total = donations.reduce((s, d) => s + d.amount, 0);
+            document.getElementById('donTotal').textContent = total.toLocaleString();
+            const pct = Math.min((total / 500000) * 100, 100);
+            document.getElementById('donProgress').style.width = pct + '%';
+            document.getElementById('donPercentage').textContent = pct.toFixed(1) + '%';
+
+            const tbody = document.getElementById('donTableBody');
+            const no = document.getElementById('noDonations');
+            if (donations.length === 0) {
+                tbody.innerHTML = '';
+                no.style.display = 'block';
+                return;
+            }
+            no.style.display = 'none';
+            tbody.innerHTML = donations.slice().reverse().map(d => `
+                    <tr><td>${d.name}</td><td><strong>${d.amount.toLocaleString()} ETB</strong></td><td>${d.message || '-'}</td><td>${formatDate(d.date)}</td></tr>
+                `).join('');
+        }
+
+        function resetDonations() {
+            if (!confirm('Reset all donation data?')) return;
+            donations = [];
+            saveAll();
+            renderDonations();
+        }
+
+        // ============================================================
+        //  RECEIPTS (Finance)
+        // ============================================================
+        document.getElementById('receiptForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('receiptName').value.trim();
+            const amount = parseInt(document.getElementById('receiptAmount').value);
+            const file = document.getElementById('receiptFile').files[0];
+
+            if (!name || !amount || !file) return alert('Please fill all fields and select a receipt image.');
+
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                receipts.push({
+                    id: genId(),
+                    name,
+                    amount,
+                    data: ev.target.result,
+                    date: new Date().toISOString()
+                });
+                saveAll();
+                renderReceipts();
+                document.getElementById('receiptForm').reset();
+                alert('Receipt uploaded!');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function renderReceipts() {
+            const tbody = document.getElementById('receiptTableBody');
+            const no = document.getElementById('noReceipts');
+            if (receipts.length === 0) {
+                tbody.innerHTML = '';
+                no.style.display = 'block';
+                return;
+            }
+            no.style.display = 'none';
+            tbody.innerHTML = receipts.slice().reverse().map(r => `
+                    <tr>
+                        <td>${r.name}</td>
+                        <td><strong>${r.amount.toLocaleString()} ETB</strong></td>
+                        <td><a href="${r.data}" target="_blank" class="btn btn-sm btn-outline"><i class="fas fa-image"></i> View</a></td>
+                        <td>${formatDate(r.date)}</td>
+                    </tr>
+                `).join('');
+        }
+
+        // ============================================================
+        //  COMMITTEES (display leaders)
+        // ============================================================
+        function renderCommittees() {
+            const grid = document.getElementById('committeeGrid');
+            const keys = Object.keys(committeeLeaders);
+            grid.innerHTML = keys.map(key => {
+                const data = committeeLeaders[key];
+                const leadersHtml = data.leaders.map(l =>
+                    `<div class="leader"><i class="fas fa-user-circle"></i> <strong>${l.role}:</strong> ${l.name} ${l.email ? '| '+l.email : ''} ${l.phone ? '| '+l.phone : ''}</div>`
+                ).join('');
+                return `
+                        <div class="committee-card">
+                            <h5>${key}</h5>
+                            ${leadersHtml}
+                            <div class="contact-links">
+                                ${data.leaders.filter(l=>l.email).map(l=>`<a href="mailto:${l.email}"><i class="fas fa-envelope"></i> Email</a>`).join('')}
+                                ${data.leaders.filter(l=>l.phone).map(l=>`<a href="tel:${l.phone}"><i class="fas fa-phone"></i> Call</a>`).join('')}
+                            </div>
+                        </div>
+                    `;
+            }).join('');
+        }
+
+        // ============================================================
+        //  COMMITTEE ROOM (file upload per committee)
+        // ============================================================
+        document.getElementById('roomCommitteeSelect').addEventListener('change', renderRoomFiles);
+        document.getElementById('roomUploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const committee = document.getElementById('roomCommitteeSelect').value;
+            const title = document.getElementById('roomFileTitle').value.trim();
+            const file = document.getElementById('roomFileInput').files[0];
+
+            if (!title || !file) return alert('Please enter title and select a file.');
+
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                if (!committeeFiles[committee]) committeeFiles[committee] = [];
+                committeeFiles[committee].push({
+                    id: genId(),
+                    title,
+                    data: ev.target.result,
+                    name: file.name,
+                    size: file.size,
+                    date: new Date().toISOString()
+                });
+                saveAll();
+                renderRoomFiles();
+                document.getElementById('roomUploadForm').reset();
+                alert('File uploaded to ' + committee);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function renderRoomFiles() {
+            const committee = document.getElementById('roomCommitteeSelect').value;
+            document.getElementById('roomTitle').textContent = committee;
+            const list = document.getElementById('roomFileList');
+            const files = committeeFiles[committee] || [];
+            if (files.length === 0) {
+                list.innerHTML = '<div class="text-muted text-sm" style="padding:12px 0;">No files uploaded for this committee.</div>';
+                return;
+            }
+            list.innerHTML = files.slice().reverse().map(f => `
+                    <div class="file-item">
+                        <span class="file-name"><i class="fas fa-file"></i> ${f.title}</span>
+                        <span class="file-meta">${f.name} · ${formatDate(f.date)}</span>
+                        <span>
+                            <a href="${f.data}" download="${f.name}" class="btn btn-sm btn-outline"><i class="fas fa-download"></i></a>
+                            <button class="btn btn-sm btn-danger" onclick="removeCommitteeFile('${committee}','${f.id}')"><i class="fas fa-trash"></i></button>
+                        </span>
+                    </div>
+                `).join('');
+        }
+
+        function removeCommitteeFile(committee, id) {
+            if (!confirm('Delete this file?')) return;
+            committeeFiles[committee] = (committeeFiles[committee] || []).filter(f => f.id !== id);
+            saveAll();
+            renderRoomFiles();
+        }
+
+        // ============================================================
+        //  QURAN TEACHING ROOM
+        // ============================================================
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let isRecording = false;
+
+        document.getElementById('recordBtn').addEventListener('click', function() {
+            if (isRecording) {
+                stopRecording();
+                return;
+            }
+            startRecording();
+        });
+
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+                mediaRecorder.onstop = function() {
+                    const blob = new Blob(audioChunks, { type: 'audio/webm' });
+                    const url = URL.createObjectURL(blob);
+                    const el = document.getElementById('recordedAudio');
+                    el.innerHTML =
+                        `<audio controls src="${url}" style="width:100%;max-width:300px;"></audio> <button class="btn btn-sm btn-gold" onclick="saveRecording()"><i class="fas fa-save"></i> Save Recording</button>`;
+                    document.getElementById('recordingStatus').textContent = 'Recording saved. Click Save to store it.';
+                    isRecording = false;
+                    document.getElementById('recordBtn').innerHTML = '<i class="fas fa-microphone"></i> Start Recording';
+                };
+
+                mediaRecorder.start();
+                isRecording = true;
+                document.getElementById('recordBtn').innerHTML = '<i class="fas fa-stop"></i> Stop Recording';
+                document.getElementById('recordingStatus').innerHTML =
+                    '<span class="recording-indicator"><span class="pulse"></span> Recording...</span>';
+            } catch (err) {
+                alert('Microphone access denied or not available.');
+                console.error(err);
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && isRecording) {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(t => t.stop());
+            }
+        }
+
+        function saveRecording() {
+            const audioEl = document.querySelector('#recordedAudio audio');
+            if (!audioEl) return alert('No recording to save.');
+            // Capture the audio URL and store as base64
+            const url = audioEl.src;
+            fetch(url)
+                .then(res => res.blob())
+                .then(blob => {
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        quranFiles.push({
+                            id: genId(),
+                            title: 'Voice Recording ' + new Date().toLocaleString(),
+                            type: 'audio',
+                            data: ev.target.result,
+                            date: new Date().toISOString()
+                        });
+                        saveAll();
+                        renderQuranFiles();
+                        alert('Recording saved!');
+                        document.getElementById('recordedAudio').innerHTML = '';
+                    };
+                    reader.readAsDataURL(blob);
+                });
+        }
+
+        document.getElementById('quranUploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('quranTitle').value.trim();
+            const file = document.getElementById('quranFile').files[0];
+            if (!title || !file) return alert('Please enter title and select a file.');
+
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                quranFiles.push({
+                    id: genId(),
+                    title,
+                    type: file.type.startsWith('video') ? 'video' : 'audio',
+                    data: ev.target.result,
+                    name: file.name,
+                    date: new Date().toISOString()
+                });
+                saveAll();
+                renderQuranFiles();
+                document.getElementById('quranUploadForm').reset();
+                alert('Teaching material uploaded!');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function renderQuranFiles() {
+            const list = document.getElementById('quranFileList');
+            if (quranFiles.length === 0) {
+                list.innerHTML = '<div class="text-muted text-sm" style="padding:12px 0;">No teaching materials yet.</div>';
+                return;
+            }
+            list.innerHTML = quranFiles.slice().reverse().map(f => `
+                    <div class="file-item">
+                        <span class="file-name"><i class="fas fa-${f.type === 'video' ? 'video' : 'music'}"></i> ${f.title}</span>
+                        <span class="file-meta">${f.name || f.type} · ${formatDate(f.date)}</span>
+                        <span>
+                            <a href="${f.data}" target="_blank" class="btn btn-sm btn-outline"><i class="fas fa-play"></i> Play</a>
+                            <button class="btn btn-sm btn-danger" onclick="removeQuranFile('${f.id}')"><i class="fas fa-trash"></i></button>
+                        </span>
+                    </div>
+                `).join('');
+        }
+
+        function removeQuranFile(id) {
+            if (!confirm('Delete this material?')) return;
+            quranFiles = quranFiles.filter(f => f.id !== id);
+            saveAll();
+            renderQuranFiles();
+        }
+
+        // ============================================================
+        //  STUDENTS (Quran levels)
+        // ============================================================
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('studentName').value.trim();
+            const level = document.getElementById('studentLevel').value;
+            if (!name) return alert('Enter student name.');
+            students.push({ id: genId(), name, level, date: new Date().toISOString() });
+            saveAll();
+            renderStudents();
+            this.reset();
+        });
+
+        function renderStudents() {
+            const tbody = document.getElementById('studentTableBody');
+            const no = document.getElementById('noStudents');
+            if (students.length === 0) {
+                tbody.innerHTML = '';
+                no.style.display = 'block';
+                return;
+            }
+            no.style.display = 'none';
+            tbody.innerHTML = students.slice().reverse().map(s => `
+                    <tr><td>${s.name}</td><td><span class="tag primary">${s.level}</span></td><td>${formatDate(s.date)}</td></tr>
+                `).join('');
+        }
+
+        // ============================================================
+        //  TRAINING MATERIALS
+        // ============================================================
+        document.getElementById('trainingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('trainingTitle').value.trim();
+            const category = document.getElementById('trainingCategory').value;
+            const desc = document.getElementById('trainingDesc').value.trim();
+            const file = document.getElementById('trainingFile').files[0];
+
+            if (!title || !file) return alert('Please enter title and select a file.');
+
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                trainingFiles.push({
+                    id: genId(),
+                    title,
+                    category,
+                    desc,
+                    data: ev.target.result,
+                    name: file.name,
+                    date: new Date().toISOString()
+                });
+                saveAll();
+                renderTraining();
+                document.getElementById('trainingForm').reset();
+                alert('Training material uploaded!');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function renderTraining() {
+            const list = document.getElementById('trainingList');
+            if (trainingFiles.length === 0) {
+                list.innerHTML = '<div class="text-muted text-sm" style="padding:12px 0;">No training materials uploaded.</div>';
+                return;
+            }
+            list.innerHTML = trainingFiles.slice().reverse().map(f => `
+                    <div class="file-item">
+                        <span class="file-name"><i class="fas fa-book"></i> ${f.title} <span class="tag">${f.category}</span></span>
+                        <span class="file-meta">${f.name} · ${formatDate(f.date)}</span>
+                        <span>
+                            <a href="${f.data}" download="${f.name}" class="btn btn-sm btn-outline"><i class="fas fa-download"></i></a>
+                            <button class="btn btn-sm btn-danger" onclick="removeTraining('${f.id}')"><i class="fas fa-trash"></i></button>
+                        </span>
+                    </div>
+                `).join('');
+        }
+
+        function removeTraining(id) {
+            if (!confirm('Delete this training?')) return;
+            trainingFiles = trainingFiles.filter(f => f.id !== id);
+            saveAll();
+            renderTraining();
+        }
+
+        // ============================================================
+        //  MEETING ROOM
+        // ============================================================
+        document.getElementById('meetingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('meetingTitle').value.trim();
+            const link = document.getElementById('meetingLink').value.trim();
+            const datetime = document.getElementById('meetingDateTime').value;
+
+            if (!title || !link || !datetime) return alert('Please fill all fields.');
+
+            meetings.push({ id: genId(), title, link, datetime, date: new Date().toISOString() });
+            saveAll();
+            renderMeetings();
+            this.reset();
+        });
+
+        function renderMeetings() {
+            const container = document.getElementById('meetingList');
+            if (meetings.length === 0) {
+                container.innerHTML = '<div class="text-muted text-sm" style="padding:12px 0;">No meetings scheduled.</div>';
+                return;
+            }
+            container.innerHTML = meetings.slice().reverse().map(m => `
+                    <div class="file-item">
+                        <span class="file-name"><i class="fas fa-calendar-alt"></i> ${m.title}</span>
+                        <span class="file-meta">${formatDateTime(m.datetime)}</span>
+                        <span>
+                            <a href="${m.link}" target="_blank" class="btn btn-sm btn-gold"><i class="fas fa-video"></i> Join</a>
+                            <button class="btn btn-sm btn-danger" onclick="removeMeeting('${m.id}')"><i class="fas fa-trash"></i></button>
+                        </span>
+                    </div>
+                `).join('');
+        }
+
+        function removeMeeting(id) {
+            if (!confirm('Remove this meeting?')) return;
+            meetings = meetings.filter(m => m.id !== id);
+            saveAll();
+            renderMeetings();
+        }
+
+        // ============================================================
+        //  ADMIN PANEL (approval with password)
+        // ============================================================
+        let adminUnlocked = false;
+
+        document.getElementById('adminLoginBtn').addEventListener('click', function() {
+            const pwd = document.getElementById('adminPassword').value.trim();
+            if (pwd === 'Jamaadmin') {
+                adminUnlocked = true;
+                document.getElementById('adminPanel').style.display = 'block';
+                document.getElementById('adminStatus').innerHTML =
+                    '<span style="color:#065f46;"><i class="fas fa-check-circle"></i> Unlocked! You can approve members.</span>';
+                renderPending();
+            } else {
+                document.getElementById('adminStatus').innerHTML =
+                    '<span style="color:#991b1b;"><i class="fas fa-times-circle"></i> Incorrect password. Try again.</span>';
+                adminUnlocked = false;
+                document.getElementById('adminPanel').style.display = 'none';
+            }
+        });
+
+        function renderPending() {
+            const tbody = document.getElementById('pendingTableBody');
+            const no = document.getElementById('noPending');
+            const pend = pendingMembers.filter(m => m.status === 'pending');
+
+            if (!adminUnlocked) {
+                tbody.innerHTML = '';
+                no.style.display = 'block';
+                no.textContent = '🔒 Unlock admin panel to see pending members.';
+                return;
+            }
+
+            if (pend.length === 0) {
+                tbody.innerHTML = '';
+                no.style.display = 'block';
+                no.textContent = 'No pending members awaiting approval.';
+                return;
+            }
+            no.style.display = 'none';
+
+            tbody.innerHTML = pend.map(m => `
+                    <tr>
+                        <td><strong>${m.name}</strong></td>
+                        <td>${m.email}</td>
+                        <td>${m.committee}</td>
+                        <td>
+                            <button class="btn btn-sm" style="background:#065f46;color:#fff;" onclick="approveMember('${m.id}')"><i class="fas fa-check"></i> Approve</button>
+                            <button class="btn btn-sm btn-danger" onclick="rejectMember('${m.id}')"><i class="fas fa-times"></i> Reject</button>
+                        </td>
+                    </tr>
+                `).join('');
+        }
+
+        function approveMember(id) {
+            if (!adminUnlocked) return alert('Please unlock admin panel first.');
+            const idx = pendingMembers.findIndex(m => m.id === id);
+            if (idx === -1) return;
+            const member = pendingMembers[idx];
+            member.status = 'approved';
+            members.push(member);
+            pendingMembers.splice(idx, 1);
+            saveAll();
+            renderMembers();
+            renderPending();
+            updateBadge();
+            alert('Member approved!');
+        }
+
+        function rejectMember(id) {
+            if (!adminUnlocked) return alert('Please unlock admin panel first.');
+            if (!confirm('Reject this member?')) return;
+            const idx = pendingMembers.findIndex(m => m.id === id);
+            if (idx === -1) return;
+            pendingMembers[idx].status = 'rejected';
+            pendingMembers.splice(idx, 1);
+            saveAll();
+            renderMembers();
+            renderPending();
+            updateBadge();
+            alert('Member rejected.');
+        }
+
+        // ============================================================
+        //  SETTINGS: EXPORT / IMPORT
+        // ============================================================
+        function exportData() {
+            const data = {
+                members,
+                donations,
+                receipts,
+                committeeFiles,
+                quranFiles,
+                students,
+                trainingFiles,
+                meetings,
+                pendingMembers,
+                exportedAt: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'jamaa_data_backup.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                try {
+                    const data = JSON.parse(ev.target.result);
+                    if (data.members) members = data.members;
+                    if (data.donations) donations = data.donations;
+                    if (data.receipts) receipts = data.receipts;
+                    if (data.committeeFiles) committeeFiles = data.committeeFiles;
+                    if (data.quranFiles) quranFiles = data.quranFiles;
+                    if (data.students) students = data.students;
+                    if (data.trainingFiles) trainingFiles = data.trainingFiles;
+                    if (data.meetings) meetings = data.meetings;
+                    if (data.pendingMembers) pendingMembers = data.pendingMembers;
+                    saveAll();
+                    alert('Data imported successfully! Reloading...');
+                    location.reload();
+                } catch (err) {
+                    alert('Invalid JSON file.');
+                    console.error(err);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        function init() {
+            renderMembers();
+            renderDonations();
+            renderReceipts();
+            renderCommittees();
+            renderRoomFiles();
+            renderQuranFiles();
+            renderStudents();
+            renderTraining();
+            renderMeetings();
+            renderPending();
+            updateBadge();
+        }
+        init();
+
+        console.log('🔹 Jam\'aa Subul-Assalaam Platform loaded successfully.');
+        console.log('🔹 Admin password: Jamaadmin');
+        console.log('🔹 Data stored in localStorage.');
+    </script>
+</body>
+</html>
