@@ -1,233 +1,212 @@
-# Jam-aa-Subul-Assalaam-
-Jam'aa Subul-Assalaam Dargaggoota Waaccuu 
-🕌 Jam'aa Subul-Assalaam – Full‑Stack Platform
-A comprehensive digital platform for Jam'aa Subul-Assalaam Dargaggoota Waaccuu – managing members, committees, donations, teaching, and administration – all in one modern, internally‑functional application.
+# Jam'aa Subul-Assalaam Dargaggoota Waaccuu — Platform & Application
 
-https://i.ibb.co/PsGDsNnn/jamaa-subul-salam.jpg
+## 🌐 Overview
 
-📌 Overview
-This platform serves as the central hub for the Jam'aa Subul-Assalaam community. It enables member registration, committee coordination, donation tracking, Quran teaching (with voice recording), training material sharing, online meeting scheduling, and an admin panel for approvals – all backed by a secure Node.js + MongoDB backend.
+**Jam'aa Subul-Assalaam** is a complete, fully functional internal management platform for the Waaccuu Youth Association. Built as a **single HTML5 file**, it delivers over **70 interactive pages** that cover all aspects of the Jama'aa's operations—from member registration and committee management to Qiraatii teaching, finance tracking, online meetings, and administrative approvals.
 
-The frontend is a single, responsive HTML page that communicates via REST APIs, making it easy to deploy and maintain.
+The platform is designed to be self-contained, using `localStorage` for data persistence, making it easy to deploy on any static hosting service (Render, Netlify, GitHub Pages, etc.) without needing a backend server. However, it is structured to be upgradable to a full-stack solution with a Node.js backend and PostgreSQL database.
 
-✨ Key Features
-👥 Member Management
-Self‑registration – anyone can sign up (pending approval).
+---
 
-Admin approval – the Amir (or committee) approves members using a secure password (Jamaadmin).
+## 🚀 Key Features
 
-Role‑based profiles – members can have roles like Amiira, Itti Aana, Barreessaa, etc.
+- **Member Management** – Register, approve, view, and manage members with role-based access.
+- **Admin Approval Workflow** – Amir or Admin Committee approves pending members using a secure password (`Jamaa*****`).
+- **7 Committees** – Fully listed with leaders, contact details (email & phone), and dedicated pages.
+- **Donation Center** – Display bank accounts (CBE, CBO, Awash, Rammis) with copy functionality, submit donations with optional receipt uploads, and view donation history.
+- **Finance Module** – Track membership fees, contributions, monthly reports, and financial summaries.
+- **Qiraatii Teaching Room** – Upload and manage lessons, audio, and video materials (Admin/Sheek/Ustaz only). Students can view and download.
+- **Online Meeting Room** – Integrate Google Meet or Jitsi links; default Jitsi room provided.
+- **Digital Library** – Placeholder for Qur'an, Hadiis, Tafsiir, Audio/Video, and PDF books.
+- **Events & Notifications** – Schedule events, send internal notifications, and view recent activity.
+- **Dashboard** – Real-time statistics (members, donations, reports, meetings) with quick action buttons.
+- **Profile & Settings** – User profile view, dark/light mode toggle, language selector, and data backup/clear.
+- **Audit Log** – Track all significant actions for transparency and security.
+- **Responsive Design** – Works on desktop, tablet, and mobile devices.
+- **Dark Mode** – Toggle between light and dark themes.
 
-Real‑time member list with status badges (pending / approved / rejected).
+---
 
-🏛️ Seven Committee Rooms
-Each committee has:
+## 📋 Included Pages (70+)
 
-Leaders' contact details (email & phone) displayed.
+The platform includes the following sections, each with multiple sub-pages and dynamic content:
 
-Dedicated file upload space – members can upload reports, documents, etc.
+| Module                | Pages                                                                 |
+|-----------------------|-----------------------------------------------------------------------|
+| **Home**              | Hero, Vision, Mission, Stats, Bank Accounts                           |
+| **Dashboard**         | Overview, Quick Actions, Recent Activity                              |
+| **Members**           | List, Add, Edit (via registration), Approve, Delete                   |
+| **Register**          | Member registration form with committee selection                     |
+| **Approvals**         | Pending members list, Amir approval panel                             |
+| **Committees**        | All 7 committees with leaders and contacts                           |
+| **Donations**         | Bank accounts, donation form, history                                 |
+| **Finance**           | Membership fee records, total contributions, payer list               |
+| **Qiraatii Room**     | Lessons, Audio, Video tabs; upload for Admin/Teachers                 |
+| **Meeting Room**      | Google Meet / Jitsi iframe integration                                |
+| **Library**           | Qur'an, Hadiis, Tafsiir, Audio, Video, PDF (placeholders)             |
+| **Events**            | List and manage upcoming events                                       |
+| **Notifications**     | View all system notifications                                         |
+| **Reports**           | Weekly and monthly reports, generate sample reports                   |
+| **Gallery**           | Image gallery placeholder                                             |
+| **Profile**           | User account details, membership status                               |
+| **Settings**          | Dark mode, language, clear data, backup                               |
+| **Admin Panel**       | System status, audit log, backup creation                             |
+| **Login/Logout**      | Simple email/password authentication (local)                          |
 
-Full CRUD – upload, view, download, and delete files (admin).
+---
 
-🤲 Donation & Finance
-Donation progress bar – track total raised against a goal (500,000 ETB).
+## 🏛️ Committees & Leadership
 
-Donation history – list of all donations with amounts and messages.
+The platform includes the following seven committees with their leaders as per the constitution:
 
-Receipt upload – members can upload proof of membership fee payments (image files).
+1. **Koree Bulchinsaa Jama'aa** – Amir: Engineer Jemal Nuure, Vice: Ustaaz Abdulaziz Sileshi, Secretary: Hundee Yuusuf
+2. **Koree Hawaasummaa** – Amir: Dr Lammi, Vice: Roba Abrahim
+3. **Koree Maallaqaa** – Amir: Hiriirsaa Jamaal, Vice: Shafi Abdella, Secretary: Abdeta Tofik, Auditors: Ibrahim Abdulahi & Yasin Abdella
+4. **Koree Toohannoo fi Hordoffii** – Amir: Shamshu Aliyi, Vice: Arif Yeshixila, Secretary: Adinan Hashim
+5. **Koree Qiraatii** – Amir: Roba Muhe, Vice: Abdusemed Usmail
+6. **Koree Da'awaa fi Irshad** – Amir: Jafar Usmail, Vice: Ammaar
+7. **Koree Qindeeysituu Araddootaa** – Amir: Abdurezak Aliyi, Vice: Falmata Yusuf, Secretary: Abdi Ibrahim
 
-📖 Quran Teaching Room
-Voice recording – Ustaaz can record directly in the browser and save the audio.
+Each leader's contact details (email and phone) are displayed and clickable for direct communication.
 
-Video/audio upload – share recitations, lectures, and teaching materials.
+---
 
-Student tracking – register students with their reading level (Beginner to Master).
+## 💰 Bank Accounts
 
-📚 Training Materials
-Upload educational resources (PDF, video, audio) categorized as:
+The following accounts are displayed in the Donation and About sections, with a copy-to-clipboard button:
 
-Quran
+| Bank        | Account Number        |
+|-------------|-----------------------|
+| CBE         | 1000631440014         |
+| CBO         | 1003700549944         |
+| Awash Bank  | 014251470950000       |
+| Rammis Bank | 1010000332401         |
 
-Hadiis
+---
 
-Kitaab
+## 🔐 Roles & Permissions
 
-General
+- **Guest** – View public pages (Home, About, Committees).
+- **Member** – Registered and approved; can view members, donate, access Qiraatii materials (view only), join meetings, and manage profile.
+- **Teacher/Sheek/Ustaz** – Can upload materials to the Qiraatii room (in addition to member permissions).
+- **Admin/Amir** – Full control: approve members, manage all content, view audit logs, and perform administrative actions.
 
-Download and delete functionality.
+The Amir password for bulk approval is **`Jamaa*****`** (hardcoded, not displayed on the UI).
 
-🎥 Meeting Room
-Schedule online meetings by adding Google Meet links with date/time.
+---
 
-All meetings are listed with join buttons.
+## 🧩 Data Persistence
 
-🔐 Admin Panel
-Secure login with the Amir’s password (Jamaadmin).
+All data (members, donations, Qiraatii materials, notifications, etc.) is stored in the browser's `localStorage` using a `jsams_` prefix. This allows the platform to work entirely offline and be deployed as a static site. Data can be backed up as a JSON file via the Admin panel.
 
-Approve or reject pending member registrations.
+---
 
-Full data export/import (JSON) for backup and migration.
+## 🛠️ Technologies Used
 
-Clear all data (reset) option.
+- **HTML5** – Structure and semantics.
+- **CSS3** – Custom properties, flexbox, grid, animations, dark/light mode.
+- **JavaScript (Vanilla)** – All logic, DOM manipulation, state management, local storage, file handling.
+- **Font Awesome** – Icons for UI enhancement.
+- **Google Fonts** – System fonts for performance.
 
-🛠️ Tech Stack
-Layer	Technology
-Backend	Node.js, Express, MongoDB (Mongoose)
-Frontend	Vanilla HTML5, CSS3, JavaScript (Fetch API)
-Auth	Simple token‑based admin authentication
-File Storage	Base64 encoding in MongoDB (ready to switch to Cloudinary/S3)
-Deployment	Render, Heroku, or any Node.js host
-📦 Repository
-GitHub: https://github.com/Edrisabdella/Jam-aa-Subul-Assalaam-.git
+---
 
-Email Contact: jamaasubulassalaam@gmail.com
+## 📦 Deployment
 
-🚀 Getting Started
-Prerequisites
-Node.js (v14+)
+### Option 1: Single HTML File Deployment
 
-MongoDB Atlas account (or local MongoDB instance)
+1. Download the `index.html` file.
+2. Upload it to any static hosting service:
+   - **Render** – Use the "Static Site" option.
+   - **Netlify** – Drag and drop the file.
+   - **GitHub Pages** – Add the file to a repository and enable Pages.
+   - **Vercel** – Deploy as a static site.
 
-Git
+### Option 2: Full-Stack Upgrade (Future)
 
-Installation
-Clone the repository
+The platform is designed to be extended with:
+- **Backend**: Node.js + Express
+- **Database**: PostgreSQL
+- **Authentication**: JWT, Firebase
+- **File Storage**: Cloudinary
+- **Mobile App**: Flutter
 
-bash
-git clone https://github.com/Edrisabdella/Jam-aa-Subul-Assalaam-.git
-cd Jam-aa-Subul-Assalaam-
-Install dependencies
+The current single-file version serves as a **proof-of-concept** and a fully functional starter, but can be migrated to a production-grade MERN or PERN stack.
 
-bash
-npm install
-Set up environment variables
-Create a .env file in the root directory:
+---
 
-env
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-ADMIN_PASSWORD=Jamaadmin   # Change this in production
-Run the server
+## 🔧 Usage Guide
 
-bash
-npm start
-For development with auto‑reload:
+### For Members
+1. **Register** – Fill out the registration form; wait for admin approval.
+2. **Login** – Use your registered email and password.
+3. **Profile** – View and update your information.
+4. **Donate** – Submit donations and upload receipts.
+5. **Qiraatii** – Access lessons, audio, and video materials uploaded by teachers.
+6. **Meetings** – Join online meetings via the embedded iframe.
+7. **Events** – Check upcoming activities.
 
-bash
-npm run dev
-Open your browser at http://localhost:5000
+### For Committee Leaders
+- View your committee's page with contact details.
+- If you are a teacher/Sheek/Ustaz, you can upload Qiraatii materials.
 
-🔧 Environment Variables
-Variable	Description	Default
-PORT	Port the server listens on	5000
-MONGODB_URI	MongoDB connection string (Atlas recommended)	(required)
-ADMIN_PASSWORD	Password for admin panel access	Jamaadmin
-📡 API Endpoints (REST)
-All endpoints are prefixed with /api.
+### For Amir / Admin
+- **Approvals** – Review pending members and approve them individually or bulk-approve with the Amir password.
+- **Audit Log** – Monitor all actions performed on the platform.
+- **Backup** – Download a JSON backup of all data.
+- **Settings** – Toggle dark mode, clear data, etc.
 
-Method	Endpoint	Description	Auth
-POST	/admin/login	Login with password → returns token	Public
-GET	/members	List all approved members	Public
-POST	/members/register	Register a new member (pending)	Public
-GET	/members/pending	List pending members	Admin Token
-PUT	/members/approve/:id	Approve a pending member	Admin Token
-DELETE	/members/reject/:id	Reject a pending member	Admin Token
-DELETE	/members/:id	Delete an approved member	Admin Token
-GET	/donations	Get all donations	Public
-POST	/donations	Create a donation	Public
-DELETE	/donations/all	Delete all donations	Admin Token
-GET	/receipts	List all uploaded receipts	Public
-POST	/receipts	Upload a receipt (base64 image)	Public
-GET	/committees/:committee	Get files for a specific committee	Public
-POST	/committees	Upload a file to a committee	Public
-DELETE	/committees/:id	Delete a committee file	Admin Token
-GET	/quran	List all Quran teaching materials	Public
-POST	/quran	Upload a Quran teaching file	Public
-DELETE	/quran/:id	Delete a Quran file	Admin Token
-GET	/students	List all students	Public
-POST	/students	Add a student	Public
-GET	/training	List training materials	Public
-POST	/training	Upload training material	Public
-DELETE	/training/:id	Delete training material	Admin Token
-GET	/meetings	List all meetings	Public
-POST	/meetings	Create a meeting	Public
-DELETE	/meetings/:id	Delete a meeting	Admin Token
-GET	/admin/export	Export all data as JSON	Admin Token
-POST	/admin/import	Import data from JSON	Admin Token
-DELETE	/admin/clear	Clear all data	Admin Token
-Admin Token – obtained after login; include in x-admin-token header.
+---
 
-🌐 Deployment (Render)
-Push your repository to GitHub.
+## 📂 Project Structure (Single File)
 
-On Render, create a New Web Service and connect your repo.
+Although the entire application is in one HTML file, it is organized internally as:
 
-Set:
+- **CSS** – Inline styles with variables for theming.
+- **HTML** – All pages are `div.page` elements, shown/hidden via JavaScript.
+- **JavaScript** – State management, rendering functions, event handlers, and utilities.
 
-Build Command: npm install
+---
 
-Start Command: node server.js
+## 🧪 Testing & Validation
 
-Add environment variables:
+- **Cross-browser**: Works on Chrome, Firefox, Edge, Safari.
+- **Responsive**: Tested on mobile, tablet, and desktop.
+- **Data Integrity**: All actions are logged; data persists across sessions.
 
-MONGODB_URI – your Atlas connection string
+---
 
-ADMIN_PASSWORD – your secure password
+## 🚧 Future Enhancements
 
-Deploy! The app will be live at your Render URL.
+- Connect to a real backend with PostgreSQL.
+- Email/SMS notifications.
+- Google Calendar integration for events.
+- Advanced search and filtering.
+- Mobile app (Flutter) for Android and iOS.
+- Payment gateway integration (Chapa, Telebirr, etc.).
+- Multi-language support (Afaan Oromo, Arabic, Amharic).
 
-📖 Usage Guide
-For Members
-Register – fill in the form under the “Members” page; your request goes to pending.
+---
 
-Donate – use the “Donations” page; your donation appears instantly.
+## 📄 License
 
-Upload Receipt – in “Finance”, upload a screenshot of your payment.
+This project is proprietary and intended for the exclusive use of **Jam'aa Subul-Assalaam Dargaggoota Waaccuu**. Redistribution or commercial use without permission is prohibited.
 
-Access Committee Rooms – switch to the desired committee, upload or download files.
+---
 
-Quran Teaching – students can be added; Ustaaz can record voice or upload lessons.
+## 🙏 Acknowledgments
 
-Training Materials – browse and download resources.
+- The Jama'aa leadership and members for their vision.
+- All contributors who helped design and review the platform.
 
-Join Meetings – click the “Join” button to open Google Meet links.
+---
 
-For Admins (Amir / Committee)
-Login – go to “Admin Panel”, enter password Jamaadmin (change via env).
+## 📬 Contact
 
-Approve/Reject – pending members appear; approve or reject them.
+For support or inquiries, please contact the Jama'aa administration at:
+**Email**: jamaasubulassalaam@gmail.com  
+**Website**: [https://jam-aa-subul-assalaam.onrender.com](https://jam-aa-subul-assalaam.onrender.com)
 
-Manage Data – export/import data for backup, or clear all data.
+---
 
-🔒 Security Considerations
-The admin token is stored in localStorage – for production, consider using HTTP‑only cookies.
-
-All file data is stored as base64 in MongoDB – this is fine for moderate usage; for large files, switch to cloud storage.
-
-Input validation is basic – add more robust validation in production.
-
-🤝 Contributing
-Contributions are welcome!
-If you'd like to improve the platform, please:
-
-Fork the repository.
-
-Create a feature branch.
-
-Commit your changes.
-
-Push and open a Pull Request.
-
-For major changes, please open an issue first to discuss what you would like to change.
-
-📄 License
-This project is open‑source and available under the MIT License.
-
-📬 Contact
-For any questions, suggestions, or support, reach out to:
-
-Email: jamaasubulassalaam@gmail.com
-
-GitHub Issues: https://github.com/Edrisabdella/Jam-aa-Subul-Assalaam-/issues
-
-May Allah bless this effort and make it a source of benefit for the community. 🤲
+*Built with ❤️ for the community.*
